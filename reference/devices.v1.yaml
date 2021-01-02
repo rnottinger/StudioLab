@@ -156,8 +156,27 @@ paths:
     get:
       summary: getDevices
       tags: []
-      responses: {}
+      responses:
+        '200':
+          description: OK
+          content:
+            application/json:
+              schema:
+                $ref: ../models/device.v1.json
+        '500':
+          description: Internal Server Error
+          content:
+            application/json:
+              schema:
+                $ref: ../models/error.v1.yaml
       operationId: get-api-devices
+      parameters:
+        - $ref: '#/components/parameters/deviceid'
+        - $ref: '#/components/parameters/sort'
+        - $ref: '#/components/parameters/limit'
+        - $ref: '#/components/parameters/spaceid'
+      security:
+        - API Key - 1: []
     post:
       summary: newDevice
       tags: []
